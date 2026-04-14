@@ -1,7 +1,7 @@
 import Link  from  "next/link";
 export default function Footer(){
     return(
-         <footer className="w-full bg-green-950 text-white mt-10">
+         <footer className="w-full bg-slate-900/70 text-white mt-10">
             <div className="max-w-6xl mx-auto px-6 py-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     
@@ -16,10 +16,26 @@ export default function Footer(){
                     <div>
                         <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
                         <ul className="space-y-2 text-sm">
-                            <li> <Link href='/' className="text-gray-300 hover:text-white"> Home</Link></li>
-                             <li> <Link href='/signin' className="text-gray-300 hover:text-white">Sign Up</Link></li>
-                            <li> <Link href='/about' className="text-gray-300 hover:text-white">About</Link></li>
-                            <li><Link href="#" className="text-gray-300 hover:text-white">Contact</Link></li>
+                            <li>
+                                <Link href='/' className="text-gray-300 hover:text-white">
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href='/Users/candidateSignup' className="text-gray-300 hover:text-white">
+                                    Candidate Signup
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href='/Users/EmployeeSignup' className="text-gray-300 hover:text-white">
+                                    Recruiter Signup
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="text-gray-300 hover:text-white">
+                                    Contact
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
