@@ -24,7 +24,7 @@ const popularJobs = [
     type: "Full-time",
   },
   {
-    title: "Sales Manager",
+    title: "digital Marketer",
     company: "Buyam",
     location: "On-site",
     type: "Full-time",
@@ -70,7 +70,7 @@ export default function HomePage() {
               Recruitiq helps professionals discover opportunities, submit applications, and grow their careers with confidence.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a href="#popular-jobs" className="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300">
+              <a href="/Users/Job.tsx" className="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300">
                 Browse Jobs
               </a>
               <a href="/Users/candidateSignup" className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">

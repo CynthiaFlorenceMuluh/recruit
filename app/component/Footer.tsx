@@ -22,17 +22,17 @@ export default function Footer(){
                                 </Link>
                             </li>
                             <li>
-                                <Link href='/Users/candidateSignup' className="text-gray-300 hover:text-white">
+                                <Link href='/candidateSignup' className="text-gray-300 hover:text-white">
                                     Candidate Signup
                                 </Link>
                             </li>
                             <li>
-                                <Link href='/Users/EmployeeSignup' className="text-gray-300 hover:text-white">
+                                <Link href='/EmployeeSignup' className="text-gray-300 hover:text-white">
                                     Recruiter Signup
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-gray-300 hover:text-white">
+                                <Link href="/contact" className="text-gray-300 hover:text-white">
                                     Contact
                                 </Link>
                             </li>

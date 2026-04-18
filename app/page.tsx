@@ -1,14 +1,13 @@
-import HomePage from "./Users/HomePage";
-import Navbar from "./component/Navbar";
-import Footer from "./component/Footer"
+import Link from "next/link";
+import HomePage from "./HomePage";
+import page from "./candidateSignup/page";
 
 export default function Home() {
   return (
-    <>
-    <Navbar/>
+    < div>
+   
     <HomePage/>
-    <Footer/>
-
-    </>
+    
+   </div>
   );
 }
