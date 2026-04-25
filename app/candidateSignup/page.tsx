@@ -1,11 +1,11 @@
 import Link from "next/link";
 export default function page(){
     return(
-      <div className="">
-         <form className="">
-            <p>Are you seeking for a role ? </p>
-            <h2>Register here</h2>
-              <div>
+      <div className="grid ">
+        <div className="h-200 gap-8 lg:grid-cols-3 lg:items-center text-center my-5 rounded-4xl  w-100  border-white/10 bg-white p-8 shadow-2xl shadow-slate-900/10 backdrop-blur-xl sm:p-10 items-center">
+         <form className=" ">
+            <h2 className="font-semibold  text-gray-700">Register here</h2>
+              <div className="py-10">
                  <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-2">
                     Full Name
                  </label> 
@@ -15,8 +15,8 @@ export default function page(){
                  name="fullName"
                  ></input> 
                  </div>
-                 <div className="">
-                    <label htmlFor="Email" className="">
+                 <div className="py-10">
+                    <label htmlFor="Email" className="block text-sm font-semibold text-gray-700 mb-2">
                     Email
                     </label>
                     <input 
@@ -25,7 +25,7 @@ export default function page(){
                     name="Email"
                     />
                     </div>
-                    <div className="">
+                    <div className="py-10">
                         <label htmlFor="Password" className="block text-sm font-semibold text-gray-700 mb-2">
                         Password</label>
                         <input
@@ -35,8 +35,8 @@ export default function page(){
                         ></input>
 
                     </div>
-                    <div className="">
-                        <label htmlFor="ConfirmPassword" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <div className="py-10">
+                        <label htmlFor="ConfirmPassword" className="block text-sm font-semibold text-gray-800 mb-2">
                         Confirm Password</label>
                         <input
                         type="password"
@@ -45,10 +45,11 @@ export default function page(){
                         ></input>
                     </div>
                 <div className="">
-                    <button className="" >SignUp</button>
+                    <button className=" px-20 py-3 bg-slate-900 rounded-2xl" >SignUp</button>
                 </div>
-                <p>Already have an account  <Link href="/Users/candidateLogin" passHref>Signin</Link></p>
-                </form>    
+                <p className="py-10">Already have an account  <Link href="/Users/candidateLogin" passHref>Signin</Link></p>
+                </form> 
+             </div>      
                     
             </div>             
                  
