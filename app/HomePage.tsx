@@ -1,3 +1,4 @@
+import Link from "next/link";
 const popularJobs = [
   {
     title: "Fullstack Developer",
@@ -70,12 +71,12 @@ export default function HomePage() {
               Recruitiq helps professionals discover opportunities, submit applications, and grow their careers with confidence.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a href="/Users/Job.tsx" className="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300">
+              <Link href="/Job" className="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300">
                 Browse Jobs
-              </a>
-              <a href="/Users/candidateSignup" className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">
+              </Link>
+              <Link href="/candidateSignup" className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">
                 Sign up as Candidate
-              </a>
+              </Link>
             </div>
           </div>
           <div className="rounded-4xl border border-white/10 bg-white/10 p-8 shadow-2xl shadow-slate-900/10 backdrop-blur-xl sm:p-10">
@@ -116,7 +117,7 @@ export default function HomePage() {
               <p className="mt-2 text-slate-500">{job.company}</p>
               <p className="mt-4 text-sm text-slate-600">{job.location}</p>
               <button className="mt-6 inline-flex items-center rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
-                Apply
+              <Link href="/Apply">Apply</Link>
               </button>
             </div>
           ))}
@@ -173,12 +174,12 @@ export default function HomePage() {
             Join Recruitiq today and get matched with the right company, role, and team faster.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a href="/Users/candidateSignup" className="inline-flex rounded-full bg-white px-7 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-200">
+            <Link href="/candidateSignup" className="inline-flex rounded-full bg-white px-7 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-200">
               Get started
-            </a>
-            <a href="/Users/EmployeeSignup" className="inline-flex rounded-full border border-white/40 px-7 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+            </Link>
+            <Link href="/Post" className="inline-flex rounded-full border border-white/40 px-7 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
               Post a job
-            </a>
+            </Link>
           </div>
         </div>
       </section>
