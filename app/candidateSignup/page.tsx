@@ -9,14 +9,30 @@ export default function page(){
     password:"",
     confirmPassword:"",
 })
-const handleChange =(e)=>{
-    setForm({
-        ...form, [e.target.fullName]: e.target.value,
-    });
-};
 const handleSubmit =async (e) =>{
     e.preventDefault();
+    if (form.password !== form.confirmPassword){
+        alert("Passwords do not match");
+        return;
+    }   
+const res = await fetch("https://jsonplaceholder.typicode.com/users", {
+    method:"POST",
+    headers:{
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(form)
+});
+const data = await res.json();
+console.log(data);
+alert("Registration successful");
 }
+const handleChange =(e)=>{
+    setForm({
+        ...form, [e.target.name]: e.target.value
+    });
+};
+
+
     return(
       <div className="flex items-center justify-center bg-slate-900 border-gray-700 gap-8 text-gray-700 ">
          <div className=" bg-white rounded-2xl w-100 p-8 m-10">
@@ -74,7 +90,7 @@ const handleSubmit =async (e) =>{
                         ></input>
                     </div>
                 <div className="">
-                    <button className=" px-20 py-3 bg-slate-900 rounded-2xl text-white" >SignUp</button>
+                    <button className=" px-20 py-3 bg-slate-900 rounded-2xl text-white" ><Link href="/candidateLogin" passHref>SignUp</Link></button>
                 </div>
                 <p className="py-10">Already have an account  <Link href="/candidateLogin" passHref>Signin</Link></p>
                 </form> 

@@ -7,9 +7,10 @@ export default function page(){
         Email:"",
 
     });
-    const handleChange =(e)=>{
+    const handleChange = (e) =>{
         setForm({
-            ...form, [e.target.CompanyName]: e.target.value,
+            ...form, 
+            [e.target.name]: e.target.value,
         });
     };
     const handleSubmit = async (e)=>{
@@ -26,6 +27,7 @@ export default function page(){
                     <input className="h-10 border-2 border-slate-900 rounded-2xl p-5"
                     type=""
                     name=""
+                    onChange={handleChange}
                 
                     />
                 </div>
@@ -34,14 +36,18 @@ export default function page(){
                     <input className="h-10 border-2 border-slate-900 rounded-2xl p-5"
                     type=""
                     name=""
-                    id=""/>
+                    id=""
+                    onChange={handleChange}
+                    />
                 </div>
                 <div className="">
                     <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
                     <input className="h-10 border-2 border-slate-900 rounded-2xl p-5"
                     type=""
                     name=""
-                    id=""/>
+                    id=""
+                    onChange={handleChange}
+                    />
 
                 </div>
                 <div className="">
@@ -49,7 +55,9 @@ export default function page(){
                     <input className="h-10 border-2 border-slate-900 rounded-2xl p-5"
                     type=""
                     name=""
-                    id=""/>
+                    id=""
+                    onChange={handleChange}
+                    />
 
                 </div>
                 <div className="">
