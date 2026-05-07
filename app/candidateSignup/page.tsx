@@ -15,7 +15,8 @@ const handleSubmit =async (e) =>{
         alert("Passwords do not match");
         return;
     }   
-const res = await fetch("https://jsonplaceholder.typicode.com/users", {
+const res = await 
+fetch("https://jsonplaceholder.typicode.com/users", {
     method:"POST",
     headers:{
         "Content-Type": "application/json"
