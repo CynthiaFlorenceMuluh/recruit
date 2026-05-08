@@ -9,7 +9,7 @@ export default function CandidateSignupPage() {
     password: "",
     confirmPassword: "",
   });
-
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
@@ -37,6 +37,7 @@ export default function CandidateSignupPage() {
     console.log(data);
     alert("Registration successful");
   };
+
 
   return (
     <div className="flex items-center justify-center bg-slate-900 border-gray-700 gap-8 text-gray-700">
