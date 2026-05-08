@@ -14,8 +14,8 @@ const handleSubmit =async (e) =>{
     if (form.password !== form.confirmPassword){
         alert("Passwords do not match");
         return;
-    }   
-const res = await 
+    } 
+    const res = await 
 fetch("https://jsonplaceholder.typicode.com/users", {
     method:"POST",
     headers:{
@@ -26,6 +26,7 @@ fetch("https://jsonplaceholder.typicode.com/users", {
 const data = await res.json();
 console.log(data);
 alert("Registration successful");
+}  
 }
 const handleChange =(e)=>{
     setForm({
