@@ -106,11 +106,11 @@ export default function CandidateSignupPage() {
           </div>
 
           <div>
-            <button className="w-full px-20 py-3 bg-slate-900 rounded-2xl text-white" type="submit">
+            <button className="w-full px-20 py-3 bg-slate-900 rounded-2xl text-white" type="submit"><Link href="/candidateLogin">
               Sign Up
-            </button>
+           </Link> </button>
           </div>
-
+      
           <p className="py-10 text-center text-sm text-slate-500">
             Already have an account? <Link href="/candidateLogin" className="font-semibold text-slate-900 hover:text-cyan-600">Sign in</Link>
           </p>
