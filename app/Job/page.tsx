@@ -16,7 +16,7 @@ export default function Job(){
 
 
     };
-    const[jobs, setJobs]=useState([]);
+    const[jobs, setJobs]=useState<Job[]>([]);
     useEffect(() => {
       fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
@@ -27,7 +27,7 @@ export default function Job(){
             <h2>Browser available Jobs</h2>
             
         <div className="grid text-white gap-6 md:grid-cols-3">
-          {jobs?.map(job => (
+          {jobs.map((job) => (
             <div key={job.id} className="job-card bg-white rounded-3xl  p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg" >
 
               <h3 className="mt-4 text-xl font-semibold text-slate-900">{job.title}</h3>
