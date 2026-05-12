@@ -10,7 +10,7 @@ export default function Navbar() {
     <nav className="w-full bg-white border-b text-blue-950">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-4">
         <Link href="/" className="text-lg font-bold text-slate-900">
-          <Image src="/image/Logo1.jpg" alt="logo" width={100} height={70} />
+          <Image src="/image/Logo1.jpg" alt="logo" width={110} height={100} />
         </Link>
 
         <button
@@ -33,9 +33,7 @@ export default function Navbar() {
 
         <div id="navbar-menu" className={`w-full md:flex md:w-auto ${menuOpen ? "block" : "hidden"}`}>
           <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm md:flex-row md:items-center md:border-none md:p-0 md:shadow-none">
-            <Link href="/" className="transition hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
-              Home
-            </Link>
+           
             <Link href="/candidateSignup" className="transition hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
               Candidate Signup
             </Link>
