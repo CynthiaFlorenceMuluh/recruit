@@ -7,13 +7,13 @@ export default function page(){
         Email:"",
 
     });
-    const handleChange = (e) =>{
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement> ) =>{
         setForm({
             ...form, 
             [e.target.name]: e.target.value,
         });
     };
-    const handleSubmit = async (e)=>{
+    const handleSubmit = async (e:React.ChangeEvent<HTMLFormElement>)=>{
         e.preventDefault();
     }
     return(
@@ -25,8 +25,8 @@ export default function page(){
                 <div className="">
                     <label htmlFor="companyname" className="block text-sm font-semibold text-gray-700 mb-2">Company Name</label>
                     <input className="h-10 border-2 border-slate-900 rounded-2xl p-5"
-                    type=""
-                    name=""
+                    type="text"
+                    name="CompanyName"
                     onChange={handleChange}
                 
                     />
@@ -34,8 +34,8 @@ export default function page(){
                 <div className="">
                     <label htmlFor="companyemail" className="block text-sm font-semibold text-gray-700 mb-2">Company Email</label>
                     <input className="h-10 border-2 border-slate-900 rounded-2xl p-5"
-                    type=""
-                    name=""
+                    type="email"
+                    name="Email"
                     id=""
                     onChange={handleChange}
                     />
@@ -43,8 +43,8 @@ export default function page(){
                 <div className="">
                     <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
                     <input className="h-10 border-2 border-slate-900 rounded-2xl p-5"
-                    type=""
-                    name=""
+                    type="password"
+                    name="Password"
                     id=""
                     onChange={handleChange}
                     />
@@ -53,8 +53,8 @@ export default function page(){
                 <div className="">
                     <label htmlFor="confirmpassword" className="block text-sm font-semibold text-gray-700 mb-2">Confirm Password</label>
                     <input className="h-10 border-2 border-slate-900 rounded-2xl p-5"
-                    type=""
-                    name=""
+                    type="password"
+                    name="ConfirmPassword "
                     id=""
                     onChange={handleChange}
                     />
