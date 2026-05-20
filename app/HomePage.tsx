@@ -58,7 +58,7 @@ const howItWorks = [
 export default function HomePage() {
   return (
     <main className="bg-slate-50 text-slate-900">
-      <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-slate-800 to-cyan-700 px-6 py-20 text-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-700 px-6 py-20 text-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
             <p className="mb-4 inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-cyan-100">

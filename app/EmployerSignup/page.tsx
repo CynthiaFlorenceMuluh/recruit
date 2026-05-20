@@ -17,11 +17,11 @@ export default function page(){
         e.preventDefault();
     }
     return(
-        <>
+        
         <main className="flex items-center justify-center bg-slate-900 border-gray-700 gap-8 text-gray-700 ">
-        <div className=" bg-white rounded-2xl w-100 p-8 m-10">
+        <div className=" bg-white rounded-2xl w-full max-w-md p-8 m-10 ">
             <h2 className="text-center font-semibold  text-gray-700 ">Register </h2>
-            <form className="flex flex-col gap-4 items-center" onSubmit={handleSubmit}>
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                 <div className="">
                     <label htmlFor="companyname" className="block text-sm font-semibold text-gray-700 mb-2">Company Name</label>
                     <input className="h-10 border-2 border-slate-900 rounded-2xl p-5"
@@ -64,7 +64,7 @@ export default function page(){
                     <button className=" px-20 py-3 bg-slate-900 rounded-2xl text-white">SignUp</button>
                 </div>
                 <div className="">
-                    <p>Already have an account <Link href="/Login/recruiterlogin">Login</Link></p>
+                    <p className="py-10 text-center text-sm text-slate-500">Already have an account <Link href="/Login/recruiterlogin " className="font-semibold text-slate-900 hover:text-cyan-600">Login</Link></p>
                 </div>
             </form>
 
@@ -73,6 +73,6 @@ export default function page(){
 
             
         </main>
-        </>
+        
     )
 }
