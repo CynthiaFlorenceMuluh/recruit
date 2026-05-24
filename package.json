@@ -8,6 +8,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
+    
+  },
+   "engines": {
+    "node": ">=18"
   },
   "dependencies": {
     "acorn": "^8.16.0",
@@ -205,7 +209,7 @@
     "path-key": "^3.1.1",
     "path-parse": "^1.0.7",
     "picocolors": "^1.1.1",
-    "picomatch": "^2.3.2",
+    "picomatch": "^4.0.4",
     "possible-typed-array-names": "^1.1.0",
     "prelude-ls": "^1.2.1",
     "prop-types": "^15.8.1",
@@ -298,4 +302,5 @@
     "postcss": "^8.5.15",
     "tailwindcss": "^3.4.19"
   }
+ 
 }

@@ -64,7 +64,7 @@ export default function page(){
                     <button className=" px-20 py-3 bg-slate-900 rounded-2xl text-white">SignUp</button>
                 </div>
                 <div className="">
-                    <p className="py-10 text-center text-sm text-slate-500">Already have an account <Link href="/Login/recruiterlogin " className="font-semibold text-slate-900 hover:text-cyan-600">Login</Link></p>
+                    <p className="py-10 text-center text-sm text-slate-500">Already have an account <Link href="/Login/employerlogin " className="font-semibold text-slate-900 hover:text-cyan-600">Login</Link></p>
                 </div>
             </form>
 

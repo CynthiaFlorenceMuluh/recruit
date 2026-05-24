@@ -23,13 +23,12 @@ export default function Job(){
       .then((data)=> setJobs(data.slice(0,10)));
     }, []); 
     return(
-        <div className="">
-            <h2>Browser available Jobs</h2>
+        <div className="bg-slate-900 min-h-screen p-10">
+            <h2 className="text-3xl text-center font-bold p-10">Browser available Jobs</h2>
             
         <div className="grid text-white gap-6 md:grid-cols-3">
           {jobs.map((job) => (
             <div key={job.id} className="job-card bg-white rounded-3xl  p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg" >
-
               <h3 className="mt-4 text-xl font-semibold text-slate-900">{job.title}</h3>
               <p className="mt-2 text-slate-500">{job.company}</p>
               <p className="mt-4 text-sm text-slate-600">{job.location}</p>

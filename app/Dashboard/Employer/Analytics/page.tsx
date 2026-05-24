@@ -6,7 +6,7 @@ export default function AnalyticsPage() {
       </h1>
 
       <div className="bg-white p-6 rounded-2xl border h-100">
-        Analytics charts will go here.
+        
       </div>
     </div>
   );

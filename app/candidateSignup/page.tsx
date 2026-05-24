@@ -112,7 +112,7 @@ export default function CandidateSignupPage() {
           </div>
       
           <p className="py-10 text-center text-sm text-slate-500">
-            Already have an account? <Link href="/candidateLogin" className="font-semibold text-slate-900 hover:text-cyan-600">Sign in</Link>
+            Already have an account? <Link href="/Login/candidateLogin" className="font-semibold text-slate-900 hover:text-cyan-600">Sign in</Link>
           </p>
         </form>
       </div>

@@ -15,7 +15,7 @@ export default function JobsPage() {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl text-center font-bold">
           Jobs
         </h1>
 
