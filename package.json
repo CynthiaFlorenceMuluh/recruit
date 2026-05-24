@@ -8,9 +8,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
-    
   },
-   "engines": {
+  "engines": {
     "node": ">=18"
   },
   "dependencies": {
@@ -173,7 +172,6 @@
     "language-tags": "^1.0.9",
     "levn": "^0.4.1",
     "lightningcss": "^1.32.0",
-    "lightningcss-win32-x64-msvc": "^1.32.0",
     "locate-path": "^6.0.0",
     "lodash.merge": "^4.6.2",
     "loose-envify": "^1.4.0",
@@ -302,5 +300,4 @@
     "postcss": "^8.5.15",
     "tailwindcss": "^3.4.19"
   }
- 
 }
