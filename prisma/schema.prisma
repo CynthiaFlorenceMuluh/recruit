@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  candidate
+  recruiter
+  admin
+}
+
+model User {
+  id       String @id @default(uuid())
+  fullName String
+  email    String @unique
+  password String
+  role     Role
+
+  candidateProfile CandidateProfile?
+  recruiterProfile RecruiterProfile?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CandidateProfile {
+  id     String @id @default(uuid())
+  userId String @unique
+
+  title             String?
+  bio               String?
+  phone             String?
+  location          String?
+  profileImage      String?
+  resumeUrl         String?
+  profileCompletion Int     @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  skills       CandidateSkill[]
+  education    Education[]
+  experience   Experience[]
+  projects     Project[]
+  applications Application[]
+  aiScores     AIMatchScore[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Skill {
+  id   String @id @default(uuid())
+  name String @unique
+
+  candidates CandidateSkill[]
+}
+
+model CandidateSkill {
+  candidateId String
+  skillId     String
+
+  candidate CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  skill     Skill            @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@id([candidateId, skillId])
+}
+
+model Education {
+  id          String @id @default(uuid())
+  candidateId String
+
+  school       String
+  degree       String?
+  fieldOfStudy String?
+  startYear    Int?
+  endYear      Int?
+
+  candidate CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+}
+
+model Experience {
+  id          String @id @default(uuid())
+  candidateId String
+
+  company     String
+  role        String
+  description String?
+  startDate   DateTime?
+  endDate     DateTime?
+
+  candidate CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id          String @id @default(uuid())
+  candidateId String
+
+  title       String
+  description String?
+  techStack   String[]
+  githubUrl   String?
+  liveUrl     String?
+
+  candidate CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+model RecruiterProfile {
+  id     String @id @default(uuid())
+  userId String @unique
+
+  companyName    String
+  position       String?
+  companyWebsite String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  jobs Job[]
+
+  createdAt DateTime @default(now())
+}
+
+model Job {
+  id          String @id @default(uuid())
+  recruiterId String
+
+  title       String
+  description String
+  location    String?
+  jobType     String?
+  salaryRange String?
+
+  recruiter RecruiterProfile @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+
+  applications Application[]
+  aiScores     AIMatchScore[]
+
+  createdAt DateTime @default(now())
+}
+
+model Application {
+  id String @id @default(uuid())
+
+  jobId       String
+  candidateId String
+
+  status      String  @default("pending")
+  coverLetter String?
+
+  job       Job              @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  candidate CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  interviews Interview[]
+
+  createdAt DateTime @default(now())
+}
+
+model AIMatchScore {
+  id String @id @default(uuid())
+
+  jobId       String
+  candidateId String
+
+  score Int
+
+  job       Job              @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  candidate CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+model Interview {
+  id String @id @default(uuid())
+
+  applicationId String
+
+  scheduledAt DateTime
+  meetingLink String?
+  status      String   @default("scheduled")
+
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+}

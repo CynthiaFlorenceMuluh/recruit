@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/candidateLogin/Post.tsx", "app/Login/page.tsx", "app/candidateLogin/Profile.tsx", "app/HomePage.tsx", "app/Apply/component/Footer.tsx", "app/Job/page.tsx", "app/Post/page.tsx", "app/Profile/page.tsx"  ],
+, "app/candidateLogin/Post.tsx", "app/Login/page.tsx", "app/candidateLogin/Profile.tsx", "app/HomePage.tsx", "app/component/Footer.tsx", "app/Job/page.tsx", "app/Post/page.tsx", "app/Profile/page.tsx"  ],
   "exclude": ["node_modules"]
 }

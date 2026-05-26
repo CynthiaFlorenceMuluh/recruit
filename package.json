@@ -13,6 +13,7 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.3",
     "acorn": "^8.16.0",
     "acorn-jsx": "^5.3.2",
     "ajv": "^6.14.0",
@@ -210,6 +211,7 @@
     "picomatch": "^4.0.4",
     "possible-typed-array-names": "^1.1.0",
     "prelude-ls": "^1.2.1",
+    "prisma": "^6.19.3",
     "prop-types": "^15.8.1",
     "punycode": "^2.3.1",
     "queue-microtask": "^1.2.3",

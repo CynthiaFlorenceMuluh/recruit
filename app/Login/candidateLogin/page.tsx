@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 export default function CandidateLoginPage() {
     const [form, setForm] = useState({
@@ -49,7 +50,7 @@ export default function CandidateLoginPage() {
                             />
                         </div>
                         <div className="">
-                            <button type="submit" className="px-20 py-3 bg-slate-900 rounded-2xl text-white">Login</button>
+                            <button type="submit" className="px-20 py-3 bg-slate-900 rounded-2xl text-white"><Link href="Profile">Login</Link></button>
                         </div>
                 </form>
             </div>
