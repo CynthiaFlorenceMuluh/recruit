@@ -65,5 +65,17 @@ export async function POST(req: Request) {
     );
   }
 }
+export async function GET(){
+
+  const jobs = await prisma.job.findMany({
+    orderBy:{
+      createdAt:"desc"
+    }
+  });
+
+
+  return NextResponse.json(jobs);
+
+}
 
 

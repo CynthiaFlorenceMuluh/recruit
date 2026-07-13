@@ -110,10 +110,27 @@ export default function RecruiterDashboard() {
                     {job.applications?.length || 0} applicant{(job.applications?.length || 0) !== 1 ? 's' : ''}
                   </p>
                 </div>
+                <div className="flex gap-3">
+                <Link
+                href={`/EditJob/${job.id}`}
+               className="bg-cyan-700 px-4 py-2 rounded-lg">
+                Edit
+                </Link>
 
-                <button className="bg-slate-800 px-4  m-3 py-2 rounded-lg hover:bg-slate-700">
-                  View
-                </button>
+
+              <button
+
+              onClick={async()=>{
+              await fetch(`/api/jobs/${job.id}`,{
+              method:"DELETE"
+            });
+            fetchDashboard();
+          }}
+          className="bg-red-600 px-4 py-2 rounded-lg">
+            Delete
+            </button>
+            </div>
+
               </div>
             ))
           ) : (
