@@ -19,11 +19,14 @@ req:NextRequest,
   },
 
   data:{
-    title:data.title,
-    description:data.description,
-    location:data.location,
-    jobType:data.jobType,
-    salaryRange:data.salaryRange,
+     title:data.title,
+     description:data.description,
+     location:data.location,
+     Type:data.Type,
+     salary:data.salary,
+     applyHere:data.applyHere,
+     company:data.company
+    
   }
 
  });
