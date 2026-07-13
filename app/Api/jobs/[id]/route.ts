@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest} from "next/server";
 import { prisma } from "@/lib/prisma";
 
 
 export async function PUT(
-req:Request,
-{params}:{params:{id:string}}
+req:NextRequest,
+{params}:{params:Promise<{id:string}>}
 ){
 
- const id = params.id;
+ const {id }= await params;
 
  const data = await req.json();
 
@@ -33,14 +33,16 @@ req:Request,
 
 }
 export async function DELETE(
-req:Request,
-{params}:{params:{id:string}}
+req:NextRequest,
+{params}:{params:Promise<{id:string}>}
 ){
+
+ const {id} = await params;
 
  const job = await prisma.job.delete({
 
   where:{
-    id:params.id
+    id
   }
 
  });
