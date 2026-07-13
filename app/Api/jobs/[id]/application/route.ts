@@ -1,18 +1,18 @@
-import {NextResponse} from "next/server";
+import {NextResponse, NextRequest} from "next/server";
 import {prisma} from "@/lib/prisma";
 
 
 export async function GET(
-req:Request,
-{params}:{params:{id:string}}
+req:NextRequest,
+{params}:{params:Promise<{id:string}>}
 ){
-
+const {id} = await params;
 
 const applications =
 await prisma.application.findMany({
 
 where:{
-jobId:params.id
+jobId:id
 },
 
 

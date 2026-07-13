@@ -1,15 +1,15 @@
-import {NextResponse} from "next/server";
+import {NextResponse, NextRequest} from "next/server";
 import {prisma} from "@/lib/prisma";
 
 
 export async function PUT(
 
-req:Request,
+req:NextRequest,
 
-{params}:{params:{id:string}}
+{params}:{params:Promise<{id:string}>}
 
 ){
-
+const {id} = await params;
 
 const {status}=await req.json();
 
@@ -19,7 +19,7 @@ const updated =
 await prisma.application.update({
 
 where:{
-id:params.id
+id
 },
 
 
