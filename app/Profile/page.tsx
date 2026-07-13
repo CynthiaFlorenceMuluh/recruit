@@ -37,7 +37,7 @@ export default function CandidateProfilePage() {
 
   const fetchProfile = async () => {
     try {
-      const response = await fetch("/Api/Profile");
+      const response = await fetch("/api/Profile");
       const data = await response.json();
       setProfile(data);
       setFormData({
@@ -64,7 +64,7 @@ export default function CandidateProfilePage() {
 
   const handleSave = async () => {
     try {
-      const response = await fetch("/Api/Profile", {
+      const response = await fetch("/api/Profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
