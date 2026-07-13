@@ -106,7 +106,7 @@ export default function HomePage() {
 
       <section id="popular-jobs" className="max-w-6xl px-6 py-16 mx-auto">
         <div className="mb-10 text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Popular jobs</p>
+          <p className="text-3xl font-semibold  uppercase tracking-[0.3em] text-cyan-600">Popular jobs</p>
           <h2 className="mt-4 text-3xl font-bold text-slate-900">Open roles you can apply for today</h2>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
@@ -145,7 +145,7 @@ export default function HomePage() {
       <section className="max-w-6xl px-6 py-16 mx-auto">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Why choose us</p>
+            <p className="text-sm  font-semibold uppercase tracking-[0.3em] text-cyan-600">Why choose us</p>
             <h2 className="mt-4 text-4xl font-bold text-slate-900">Recruitiq makes hiring and job search easier.</h2>
             <p className="mt-6 text-lg leading-8 text-slate-600">From posting roles to evaluating candidates, Recruitiq provides the tools recruiters need and the visibility candidates want.</p>
             <ul className="mt-8 space-y-4 text-slate-700">

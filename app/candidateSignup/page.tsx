@@ -1,15 +1,19 @@
-﻿"use client"
+"use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function CandidateSignupPage() {
+  const router = useRouter();
   const [form, setForm] = useState({
     fullName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
-  
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
@@ -19,44 +23,68 @@ export default function CandidateSignupPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
     if (form.password !== form.confirmPassword) {
-      alert("Passwords do not match");
+      setError("Passwords do not match");
+      setLoading(false);
       return;
     }
 
-    const res = await fetch("https://jsonplaceholder.typicode.com/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: form.fullName,
+          email: form.email,
+          password: form.password,
+        }),
+      });
 
-    const data = await res.json();
-    console.log(data);
-    alert("Registration successful");
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error || "Signup failed");
+        setLoading(false);
+        return;
+      }
+
+      alert("Registration successful! Redirecting to login...");
+      router.push("/Login/candidateLogin");
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+      console.error(err);
+      setLoading(false);
+    }
   };
 
-
   return (
-    <div className="flex items-center justify-center bg-slate-900 border-gray-700 gap-8 text-gray-700">
+    <div className="flex items-center justify-center bg-slate-900 border-gray-700 gap-8 text-gray-700 min-h-screen">
       <div className="bg-white rounded-2xl w-full max-w-md p-8 m-10">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-          <h2 className="font-semibold text-gray-700">Register here</h2>
+          <h2 className="font-semibold text-gray-700 text-2xl">Sign Up</h2>
+
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+              {error}
+            </div>
+          )}
 
           <div>
             <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-2">
               Full Name
             </label>
             <input
-              className="h-10 w-full border-2 border-slate-900 rounded-2xl p-5"
+              className="h-10 w-full border-2 border-slate-900 rounded-2xl p-2"
               type="text"
               id="fullName"
               name="fullName"
               value={form.fullName}
-              required
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -65,13 +93,13 @@ export default function CandidateSignupPage() {
               Email
             </label>
             <input
-              className="h-10 w-full border-2 border-slate-900 rounded-2xl p-5"
+              className="h-10 w-full border-2 border-slate-900 rounded-2xl p-2"
               type="email"
               id="email"
               name="email"
               value={form.email}
-              required
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -80,13 +108,13 @@ export default function CandidateSignupPage() {
               Password
             </label>
             <input
-              className="h-10 w-full border-2 border-slate-900 rounded-2xl p-5"
+              className="h-10 w-full border-2 border-slate-900 rounded-2xl p-2"
               type="password"
               id="password"
               name="password"
               value={form.password}
-              required
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -95,24 +123,29 @@ export default function CandidateSignupPage() {
               Confirm Password
             </label>
             <input
-              className="h-10 w-full border-2 border-slate-900 rounded-2xl p-5"
+              className="h-10 w-full border-2 border-slate-900 rounded-2xl p-2"
               type="password"
               id="confirmPassword"
               name="confirmPassword"
               value={form.confirmPassword}
-              required
               onChange={handleChange}
+              required
             />
           </div>
 
-          <div>
-            <button className="w-full px-20 py-3 bg-slate-900 rounded-2xl text-white" type="submit"><Link href="/candidateLogin">
-              Sign Up
-           </Link> </button>
-          </div>
-      
-          <p className="py-10 text-center text-sm text-slate-500">
-            Already have an account? <Link href="/Login/candidateLogin" className="font-semibold text-slate-900 hover:text-cyan-600">Sign in</Link>
+          <button
+            type="submit"
+            disabled={loading}
+            className="px-6 py-3 bg-slate-900 rounded-2xl text-white font-medium hover:bg-slate-800 disabled:opacity-50"
+          >
+            {loading ? "Creating account..." : "Sign Up"}
+          </button>
+
+          <p className="text-center text-sm">
+            Already have an account?{" "}
+            <Link href="/Login/candidateLogin" className="text-blue-600 hover:underline">
+              Login
+            </Link>
           </p>
         </form>
       </div>

@@ -1,9 +1,63 @@
-import Link from "next/link";
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link"
+
+
 export default function Post(){
+    const router = useRouter();
+    const [form, setForm] = useState({
+        title: "",
+        description: "",
+        location: "",   
+        jobType: "",
+        salaryRange: "",
+    });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value,
+        });
+    
+        };
+        const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
+            setLoading(true);
+            setError("");
+            try{
+                const res= await fetch("/api/jobs", {
+                    method: "POST",
+                    headers: {
+                        "content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ...form,
+                    userId: "USER_ID_HERE",
+                    recruiterId: "RECRUITER_ID_HERE",
+                    isActive:false
+                    }),
+                });
+                const data = await res.json();
+                if(!res.ok){
+                    throw new Error(data.error || "Failed to post job");
+                }
+                alert("Job posted successfully!");
+                router.push("/jobs");
+            }
+            catch(error:any){
+                setError(error.message);
+            }finally{
+                setLoading(false);
+            }
+        };
+        
     return (
         <div className="flex items-center justify-center bg-slate-900 border-gray-700 gap-8 text-gray-700">
         <div className="bg-white rounded-2xl w-full max-w-md p-8 m-10">
-            <form className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <h2> Post a Job</h2>
                 <div className="">
                     <label htmlFor="title" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -15,6 +69,7 @@ export default function Post(){
                     id="title"
                     name="title"
                     required
+                    onChange={handleChange}
                     />  
                 
                 </div>
@@ -24,6 +79,7 @@ export default function Post(){
                     </label>
                     <select
                     id="type"
+                    onChange={handleChange}
                     name="type">
                         <option value="fulltime">Full Time</option>
                         <option value="parttime">Part Time</option>
@@ -41,6 +97,7 @@ export default function Post(){
                     id="company"
                     name="company"
                     required
+                    onChange={handleChange}
                     />
                 </div>
                 <div className="">
@@ -51,6 +108,7 @@ export default function Post(){
                     className="h-20 w-full border-2 border-slate-900 rounded-2xl p-5"
                     id="description"
                     name="description"
+                    onChange={handleChange}
                     required
                     />
                 </div>
@@ -60,7 +118,8 @@ export default function Post(){
                     </label>
                     <select
                     id="type"
-                    name="type">
+                    name="type"
+                    onChange={handleChange}>
                         <option value="onsite">Onsite</option>
                         <option value="remote">Remote</option>
                         <option value="hybrid">Hybrid</option>
@@ -73,7 +132,8 @@ export default function Post(){
                     </label>
                     <select
                         id="salary"
-                        name="salary">
+                        name="salary"
+                        onChange={handleChange}>
                             <option value="0-50k">0-50k</option>
                             <option value="50k-100k">50k-100k</option>
                             <option value="100k-150k">100k-150k</option>
@@ -90,22 +150,20 @@ export default function Post(){
                     id="applylink"
                     name="applylink"
                     required
+                    onChange={handleChange}
                     />
                 </div>
                 <div className="flex justify-center">
-                    <button className="px-6 py-3 bg-slate-900 text-white rounded-2xl" type="submit">
-                    <Link href="/Job">
-                        Publish job
-                    </Link>
+                    <button className="px-6 py-3 bg-slate-900 text-white rounded-2xl" type="submit" disabled={loading}>
+                        {loading ? "Posting..." : "Post Job"}
+             
                     </button>
                     <button className="px-6 py-3 bg-slate-900 text-white rounded-2xl ml-4" type="submit">
-                    <Link href="/Dashboard/Employer">
-                        Save draft
-                    </Link>
+                   Save draft
                     </button>
                 </div>
             </form>
         </div>
     </div>
     )
-}
+};

@@ -78,7 +78,7 @@ export default function RecruiterLayout({
 
         </nav>
       </aside>
-      <main className="flex-1 p-8 overflow-y-auto">
+      <main className="flex-1 bg-white p-8 overflow-y-auto">
         {children}
       </main>
     </div>

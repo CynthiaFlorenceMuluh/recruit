@@ -1,59 +1,109 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 export default function CandidateLoginPage() {
+    const router = useRouter();
     const [form, setForm] = useState({
         email: "",
         password: "",
     });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value,
         });
     };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const res = await fetch("https://jsonplaceholder.typicode.com/users", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(form),
-        });
-    }; 
-    return(
+        setError("");
+        setLoading(true);
 
-        <div className="flex items-center justify-center bg-slate-900 border-gray-700 gap-8 text-gray-700">
-            
+        try {
+            const result = await signIn("credentials", {
+                email: form.email,
+                password: form.password,
+                redirect: false,
+            });
+
+            if (result?.error) {
+                setError("Invalid email or password");
+                setLoading(false);
+                return;
+            }
+
+            router.push("/Dashboard");
+        } catch (err) {
+            setError("An error occurred. Please try again.");
+            console.error(err);
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="flex items-center justify-center bg-slate-900 border-gray-700 gap-8 text-gray-700 min-h-screen">
             <div className="bg-white rounded-2xl w-full max-w-md p-8 m-10">
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                    <h2 className="font-semibold text-gray-700">Login here</h2> 
+                    <h2 className="font-semibold text-gray-700 text-2xl">Login</h2>
+                    
+                    {error && (
+                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                            {error}
+                        </div>
+                    )}
+                    
                     <div>
-                        <label htmlFor="email">
+                        <label htmlFor="email" className="block text-sm font-medium mb-2">
                             Email
                         </label>
-                        <input className="h-10 w-full border-2 border-slate-900 rounded-2xl p-5"
-                        type="email"
-                        id="email"
-                        onChange={handleChange}
+                        <input
+                            className="h-10 w-full border-2 border-slate-900 rounded-2xl p-2"
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            required
                         />
-                        </div>
-                        <div className="">
-                            <label htmlFor="password">
-                                Password
-                            </label>
-                            <input className="h-10 w-full border-2 border-slate-900 rounded-2xl p-5"
+                    </div>
+
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium mb-2">
+                            Password
+                        </label>
+                        <input
+                            className="h-10 w-full border-2 border-slate-900 rounded-2xl p-2"
                             type="password"
                             id="password"
+                            name="password"
+                            value={form.password}
                             onChange={handleChange}
-                            />
-                        </div>
-                        <div className="">
-                            <button type="submit" className="px-20 py-3 bg-slate-900 rounded-2xl text-white"><Link href="Profile">Login</Link></button>
-                        </div>
+                            required
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="px-6 py-3 bg-slate-900 rounded-2xl text-white font-medium hover:bg-slate-800 disabled:opacity-50"
+                    >
+                        {loading ? "Logging in..." : "Login"}
+                    </button>
+
+                    <p className="text-center text-sm">
+                        Don't have an account?{" "}
+                        <Link href="/candidateSignup" className="text-blue-600 hover:underline">
+                            Sign up
+                        </Link>
+                    </p>
                 </form>
             </div>
         </div>
-    )
+    );
 }

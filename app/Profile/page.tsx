@@ -13,8 +13,74 @@ import {
   Pencil,
   Upload,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function CandidateProfilePage() {
+  const { data: session } = useSession();
+  const [profile, setProfile] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    title: "",
+    bio: "",
+    phone: "",
+    location: "",
+  });
+
+  useEffect(() => {
+    if (session) {
+      fetchProfile();
+    }
+  }, [session]);
+
+  const fetchProfile = async () => {
+    try {
+      const response = await fetch("/Api/Profile");
+      const data = await response.json();
+      setProfile(data);
+      setFormData({
+        fullName: data.user?.fullName || "",
+        title: data.candidateProfile?.title || "",
+        bio: data.candidateProfile?.bio || "",
+        phone: data.candidateProfile?.phone || "",
+        location: data.candidateProfile?.location || "",
+      });
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSave = async () => {
+    try {
+      const response = await fetch("/Api/Profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setProfile(data);
+        setEditing(false);
+      }
+    } catch (error) {
+      console.error("Error saving profile:", error);
+    }
+  };
+
+  if (loading) return <div className="p-8">Loading...</div>;
+
   return (
     <div className="min-h-screen bg-gray-100 p-4 md:p-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -27,32 +93,37 @@ export default function CandidateProfilePage() {
             </div>
 
             <h2 className="mt-4 text-2xl font-bold">
-              Cynthia Florence
+              {profile?.user?.fullName}
             </h2>
 
             <p className="text-gray-500 text-sm mt-1">
-              Frontend Developer
+              {profile?.candidateProfile?.title || "Not specified"}
             </p>
 
             <div className="flex items-center gap-2 text-gray-400 text-sm mt-2">
               <MapPin size={16} />
-              <span>Buea, Cameroon</span>
+              <span>{profile?.candidateProfile?.location || "Not specified"}</span>
             </div>
 
             <div className="w-full mt-6">
               <div className="flex justify-between text-sm mb-2">
                 <span>Profile Completion</span>
-                <span>75%</span>
+                <span>{profile?.candidateProfile?.profileCompletion || 0}%</span>
               </div>
 
               <div className="w-full bg-gray-200 rounded-full h-3">
-                <div className="bg-slate-900 h-3 rounded-full w-3/4"></div>
+                <div 
+                  className="bg-slate-900 h-3 rounded-full"
+                  style={{ width: `${profile?.candidateProfile?.profileCompletion || 0}%` }}
+                ></div>
               </div>
             </div>
 
          
-            <button className="mt-6 w-full bg-slate-900 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition">
-              Edit Profile
+            <button 
+              onClick={() => setEditing(!editing)}
+              className="mt-6 w-full bg-slate-900 text-white py-3 rounded-xl font-medium hover:bg-blue-700 transition">
+              {editing ? "Cancel" : "Edit Profile"}
             </button>
 
             <button className="mt-3 w-full border border-gray-300 py-3 rounded-xl font-medium hover:bg-gray-100 transition flex items-center justify-center gap-2">
@@ -89,39 +160,100 @@ export default function CandidateProfilePage() {
               </button>
             </div>
 
-            <p className="text-gray-600 mt-4 leading-7">
-              Passionate frontend developer focused on building clean,
-              responsive, and user-friendly applications using React,
-              Next.js, and modern web technologies.
-            </p>
+            {editing ? (
+              <div className="mt-4 space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Full Name</label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Bio</label>
+                  <textarea
+                    name="bio"
+                    value={formData.bio}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                    rows={4}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Phone</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Location</label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-lg p-2"
+                  />
+                </div>
+                <button
+                  onClick={handleSave}
+                  className="w-full bg-slate-900 text-white py-2 rounded-lg font-medium hover:bg-blue-700"
+                >
+                  Save Changes
+                </button>
+              </div>
+            ) : (
+              <>
+                <p className="text-gray-600 mt-4 leading-7">
+                  {profile?.candidateProfile?.bio || "No bio added yet"}
+                </p>
 
-        
-            <div className="grid grid-cols-1  md:grid-cols-2 gap-5 mt-6">
-              
-              <InfoCard
-                icon={<Mail size={18} />}
-                title="Email"
-                value="cynthia@gmail.com"
-              />
+            
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+                  
+                  <InfoCard
+                    icon={<Mail size={18} />}
+                    title="Email"
+                    value={profile?.user?.email || "N/A"}
+                  />
 
-              <InfoCard
-                icon={<Phone size={18} />}
-                title="Phone"
-                value="+237 6XX XXX XXX"
-              />
+                  <InfoCard
+                    icon={<Phone size={18} />}
+                    title="Phone"
+                    value={profile?.candidateProfile?.phone || "Not specified"}
+                  />
 
-              <InfoCard
-                icon={<MapPin size={18} />}
-                title="Location"
-                value="Buea, Cameroon"
-              />
+                  <InfoCard
+                    icon={<MapPin size={18} />}
+                    title="Location"
+                    value={profile?.candidateProfile?.location || "Not specified"}
+                  />
 
-              <InfoCard
-                icon={<Briefcase size={18} />}
-                title="Role"
-                value="Frontend Developer"
-              />
-            </div>
+                  <InfoCard
+                    icon={<Briefcase size={18} />}
+                    title="Role"
+                    value={profile?.candidateProfile?.title || "Not specified"}
+                  />
+                </div>
+              </>
+            )}
           </div>
 
           <div className="bg-white rounded-3xl shadow-sm p-6">

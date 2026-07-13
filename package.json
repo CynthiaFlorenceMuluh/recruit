@@ -35,6 +35,7 @@
     "axobject-query": "^4.1.0",
     "balanced-match": "^1.0.2",
     "baseline-browser-mapping": "^2.10.14",
+    "bcryptjs": "^3.0.3",
     "brace-expansion": "^1.1.13",
     "braces": "^3.0.3",
     "browserslist": "^4.28.2",
@@ -189,6 +190,7 @@
     "napi-postinstall": "^0.3.4",
     "natural-compare": "^1.4.0",
     "next": "^16.2.6",
+    "next-auth": "^5.0.0-beta.31",
     "node-exports-info": "^1.6.0",
     "node-releases": "^2.0.37",
     "object-assign": "^4.1.1",
@@ -296,6 +298,7 @@
   "homepage": "https://github.com/CynthiaFlorenceMuluh/recruit#readme",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "25.9.1",
     "@types/react": "19.2.15",
     "autoprefixer": "^10.5.0",
