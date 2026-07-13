@@ -36,7 +36,7 @@ export default function Job(){
               <p className="mt-4 text-sm text-slate-600">{job.location}</p>
               <p className="mt-4 text-xl font-semibold text-slate-900">{job.salary}</p>
               <p className="mt-4 text-xl font-semibold text-slate-900">{job.apply}</p>
-              <button className="mt-6 inline-flex items-center rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800" type="button">
+              <button className="mt-6 inline-flex items-center rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800" >
               <Link href="/Apply">Apply</Link>
               </button>
             </div>
