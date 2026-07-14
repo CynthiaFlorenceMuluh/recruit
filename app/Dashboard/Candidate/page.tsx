@@ -104,7 +104,7 @@ export default function CandidateDashboard() {
                           app.status === 'reviewed' ? 'bg-blue-100 text-blue-800' :
                           app.status === 'shortlisted' ? 'bg-green-100 text-green-800' :
                           app.status === 'rejected' ? 'bg-red-100 text-red-800' :
-                          'bg-gray-100 text-gray-800'http://localhost:3000
+                          'bg-gray-100 text-gray-800'
                         }`}>
                           {app.status}
                         </span>
