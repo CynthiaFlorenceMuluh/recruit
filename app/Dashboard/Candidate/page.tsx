@@ -30,8 +30,8 @@ export default function CandidateDashboard() {
         
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold">
-              My Dashboard
+            <h1 className="text-3xl text-slate-900 font-bold">
+              My Dashboard{dashboard?.user?.fullName}
             </h1>
 
             <p className="text-slate-400 mt-2">
@@ -104,7 +104,7 @@ export default function CandidateDashboard() {
                           app.status === 'reviewed' ? 'bg-blue-100 text-blue-800' :
                           app.status === 'shortlisted' ? 'bg-green-100 text-green-800' :
                           app.status === 'rejected' ? 'bg-red-100 text-red-800' :
-                          'bg-gray-100 text-gray-800'
+                          'bg-gray-100 text-gray-800'http://localhost:3000
                         }`}>
                           {app.status}
                         </span>

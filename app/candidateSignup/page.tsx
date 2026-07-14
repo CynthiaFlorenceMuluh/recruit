@@ -10,6 +10,7 @@ export default function CandidateSignupPage() {
     email: "",
     password: "",
     confirmPassword: "",
+    role:"",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -33,7 +34,7 @@ export default function CandidateSignupPage() {
     }
 
     try {
-      const res = await fetch("/api/auth/signup", {
+      const res = await fetch("/api/auth/candidateSignup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,6 +43,7 @@ export default function CandidateSignupPage() {
           fullName: form.fullName,
           email: form.email,
           password: form.password,
+          role:"candidate",
         }),
       });
 
@@ -101,6 +103,20 @@ export default function CandidateSignupPage() {
               onChange={handleChange}
               required
             />
+          </div>
+          <div className="">
+            <label htmlFor="role" className="block text-sm font-semibold text-gray-700 mb-2">
+              Role
+            </label>
+            <input
+              className="h-10 w-full border-2 border-slate-900 rounded-2xl p-2"
+              id="role"
+              name="role"
+              value={form.role}
+              onChange={handleChange}
+              required
+            />
+             
           </div>
 
           <div>

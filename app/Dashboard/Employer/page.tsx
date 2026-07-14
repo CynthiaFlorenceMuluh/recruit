@@ -32,7 +32,7 @@ export default function RecruiterDashboard() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-4xl  text-slate-900 font-bold ">
-            Welcome back, {dashboard?.user?.name}
+            Welcome back, {dashboard?.user?.companyName}
           </h1>
 
           <p className="text-slate-900 mt-2">

@@ -5,20 +5,23 @@ import { useState } from "react"
 import { useRouter } from "next/navigation";
 
 type Form = {
-  companyName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+   companyName: string;
+    position: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
 }
 
 export default function page(){
     const router = useRouter();
     const [form, setForm]= useState<Form>({
-        companyName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-    });
+    companyName: "",
+    position: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+});
+    
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const handleChange = (e:React.ChangeEvent<HTMLInputElement> ) =>{
@@ -39,18 +42,20 @@ export default function page(){
         }
 
         try {
-          const res = await fetch("/api/auth/signup", {
+          const res = await fetch("/api/auth/employersignup", {
             method: "POST",
             headers: {
              "Content-Type": "application/json",
        },
-       body: JSON.stringify({
-       fullName: form.companyName,
-       email: form.email,
-       password: form.password,
-       role: "recruiter",
-      }),
-    });
+            body: JSON.stringify({
+              fullName: form.companyName,
+              companyName: form.companyName,
+              position: form.position,
+              email: form.email,
+              password: form.password,
+              role: "recruiter"
+            })
+          });
         
 
           if (!res.ok) {
@@ -94,6 +99,20 @@ export default function page(){
                     value={form.email}
                     onChange={handleChange}
                     />
+                </div>
+                <div>
+           <label htmlFor="position" className="block text-sm font-semibold text-gray-700 mb-2">
+              Position
+            </label>
+
+                <input
+                   className="h-10 w-full border-2 border-slate-900 rounded-2xl p-5"
+                   type="text"
+                   name="position"
+                   id="position"
+                   value={form.position}
+                   onChange={handleChange}/>
+
                 </div>
                 <div className="">
                     <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">Password</label>

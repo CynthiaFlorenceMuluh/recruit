@@ -10,8 +10,10 @@ export default function Post(){
         title: "",
         description: "",
         location: "",   
-        jobType: "",
-        salaryRange: "",
+        Type: "",
+        salary: "",
+        applyHere: "",
+        company: "",
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -33,19 +35,14 @@ export default function Post(){
                     headers: {
                         "content-Type": "application/json",
                     },
-                    body: JSON.stringify({
-                        ...form,
-                    userId: "USER_ID_HERE",
-                    recruiterId: "RECRUITER_ID_HERE",
-                    isActive:false
-                    }),
+                    body: JSON.stringify(form),
                 });
                 const data = await res.json();
                 if(!res.ok){
                     throw new Error(data.error || "Failed to post job");
                 }
                 alert("Job posted successfully!");
-                router.push("/jobs");
+                router.push("/Job");
             }
             catch(error:any){
                 setError(error.message);
@@ -68,6 +65,7 @@ export default function Post(){
                     type="text"
                     id="title"
                     name="title"
+                    value={form.title}
                     required
                     onChange={handleChange}
                     />  
@@ -78,9 +76,9 @@ export default function Post(){
                         Type
                     </label>
                     <select
-                    id="type"
+                    id="Type"
                     onChange={handleChange}
-                    name="type">
+                    name="Type">
                         <option value="fulltime">Full Time</option>
                         <option value="parttime">Part Time</option>
                         <option value="contract">Contract</option>
@@ -96,6 +94,7 @@ export default function Post(){
                     type="text"
                     id="company"
                     name="company"
+                    value={form.company}
                     required
                     onChange={handleChange}
                     />
@@ -117,8 +116,8 @@ export default function Post(){
                         Location
                     </label>
                     <select
-                    id="type"
-                    name="type"
+                    id="Location"
+                    name="Location"
                     onChange={handleChange}>
                         <option value="onsite">Onsite</option>
                         <option value="remote">Remote</option>
@@ -147,8 +146,8 @@ export default function Post(){
                     <input
                     className="h-10 w-full border-2 border-slate-900 rounded-2xl p-5"
                     type="text"
-                    id="applylink"
-                    name="applylink"
+                    id="applyHere"
+                    name="applyHere"
                     required
                     onChange={handleChange}
                     />

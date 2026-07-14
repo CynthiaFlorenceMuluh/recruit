@@ -5,6 +5,7 @@ import { auth } from "@/lib/auth";
 export async function POST(req: Request) {
   try {
     const session = await auth();
+   console.log("Session:", session);
     if(!session?.user?.id){
 
     return NextResponse.json(

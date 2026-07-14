@@ -37,7 +37,7 @@ export default function employerLogin() {
         return;
       }
 
-      router.push("/Dashboard");
+      router.push("/Dashboard/Employer");
     } catch (err) {
       setError("An error occurred. Please try again.");
       console.error(err);
