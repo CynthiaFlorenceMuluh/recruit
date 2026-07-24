@@ -100,7 +100,7 @@ export default function Post(){
                     />
                 </div>
                 <div className="">
-                    <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label htmlFor="description" className="block text-sm  text-gray-700 mb-2">
                         Description
                     </label>
                     <textarea
@@ -132,11 +132,12 @@ export default function Post(){
                     <select
                         id="salary"
                         name="salary"
+                        
                         onChange={handleChange}>
-                            <option value="0-50k">0-50k</option>
-                            <option value="50k-100k">50k-100k</option>
-                            <option value="100k-150k">100k-150k</option>
-                            <option value="150k+">150k+</option>
+                            <option value="$0-50k">$0-50k</option>
+                            <option value="$50k-100k">$50k-100k</option>
+                            <option value="$100k-150k">$100k-150k</option>
+                            <option value="$150k+">$150k+</option>
                         </select>
                 </div>
                 <div className="">

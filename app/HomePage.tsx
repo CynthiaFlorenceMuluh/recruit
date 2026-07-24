@@ -2,33 +2,41 @@ import Link from "next/link";
 const popularJobs = [
   {
     title: "Fullstack Developer",
+    description: "We are seeking a skilled Fullstack Developer to join our team and help us build innovative web applications. The ideal candidate will have experience with both frontend and backend development, as well as a strong understanding of web technologies and frameworks.",
     company: "JongoHub",
     location: "Hybrid",
-    type: "Full-time",
+    salary: "$80k - 100k",
+  
   },
   {
     title: "Product Designer",
+    description: "We are seeking a talented Product Designer to join our team and help us create innovative and user-friendly digital products. The ideal candidate will have a strong portfolio showcasing their design skills, as well as experience in user research, wireframing, prototyping, and visual design.",
     company: "Creative",
     location: "Hybrid",
-    type: "Contract",
+    salary: "$70k - 90k",
+    
   },
   {
     title: "Sales Manager",
+    description: "We are seeking a results-driven Sales Manager to lead our sales team and drive revenue growth. The ideal candidate will have a proven track record of success in sales management, as well as strong leadership, communication, and analytical skills.",
     company: "V-Group",
     location: "On-site",
-    type: "Full-time",
+    salary: "$90k - 120k",
   },
   {
     title: "Virtual Assitance",
+    description: "We are seeking a dedicated Virtual Assistant to support our team with administrative tasks and client communication. The ideal candidate will have strong organizational skills and experience in virtual assistance.",
     company: "EdTech",
     location: "Remote",
-    type: "Full-time",
+    salary: "$50k - 70k",
+    
   },
   {
     title: "digital Marketer",
+    description: "We are seeking a talented Digital Marketer to join our team and help us promote our products and services. The ideal candidate will have experience in digital marketing strategies, social media management, and analytics.",
     company: "Buyam",
     location: "On-site",
-    type: "Full-time",
+    salary: "$60k - 80k",
   },
 ];
 
@@ -68,7 +76,7 @@ export default function HomePage() {
               Find your dream role and connect with recruiters at Recruitiq.
             </h1>
             <p className="mt-6 max-w-xl text-base text-slate-200 sm:text-lg">
-              Recruitiq helps professionals discover opportunities, submit applications, and grow their careers with confidence.
+              Connect with top employers, discover exciting opportunities, and apply to jobs that match your skills.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link href="/Job" className="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300">
@@ -92,7 +100,10 @@ export default function HomePage() {
             </div>
             <div className="space-y-4">
               <div className="rounded-3xl bg-white/95 p-5 shadow-lg shadow-slate-900/5">
-                <p className="text-sm font-semibold text-slate-900">Search jobs</p>
+
+                <button className="w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"  type="submit">search jobs
+
+                </button>
                 <p className="mt-2 text-sm text-slate-600">Find relevant openings by title, company or location.</p>
               </div>
               <div className="rounded-3xl bg-white/95 p-5 shadow-lg shadow-slate-900/5">
@@ -112,11 +123,14 @@ export default function HomePage() {
         <div className="grid gap-6 md:grid-cols-3">
           {popularJobs.map((job) => (
             <div key={job.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-600">{job.type}</p>
+
               <h3 className="mt-4 text-xl font-semibold text-slate-900">{job.title}</h3>
+              <p className="mt-2 text-sm text-slate-600">{job.description}</p>
               <p className="mt-2 text-slate-500">{job.company}</p>
               <p className="mt-4 text-sm text-slate-600">{job.location}</p>
+              <p className="mt-2 text-lg font-bold text-cyan-600">{job.salary}</p>
               <button className="mt-6 inline-flex items-center rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
+
               <Link href="/Apply">Apply</Link>
               </button>
             </div>
@@ -126,7 +140,7 @@ export default function HomePage() {
 
       <section className="bg-slate-900 py-16 text-white">
         <div className="max-w-6xl mx-auto text-center px-6">
-             <p className="text-sm font-bold uppercase tracking-[0.3em] text-cyan-600">How it works</p>
+             <h2 className="text-2xl font-bold uppercase tracking-[0.3em] text-cyan-600">How it works</h2>
             
           <div className="grid gap-8 lg:grid-cols-3">
             {howItWorks.map((item) => (
@@ -145,7 +159,7 @@ export default function HomePage() {
       <section className="max-w-6xl px-6 py-16 mx-auto">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
-            <p className="text-sm  font-semibold uppercase tracking-[0.3em] text-cyan-600">Why choose us</p>
+            <h2 className="text-xl  font-semibold uppercase tracking-[0.3em] text-cyan-600">Why choose us</h2>
             <h2 className="mt-4 text-4xl font-bold text-slate-900">Recruitiq makes hiring and job search easier.</h2>
             <p className="mt-6 text-lg leading-8 text-slate-600">From posting roles to evaluating candidates, Recruitiq provides the tools recruiters need and the visibility candidates want.</p>
             <ul className="mt-8 space-y-4 text-slate-700">

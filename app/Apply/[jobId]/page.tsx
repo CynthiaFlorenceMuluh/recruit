@@ -20,7 +20,7 @@ export default function Apply(){
         
     const handleSubmit = async (e:React.ChangeEvent<HTMLFormElement>)=>{    
         e.preventDefault();
-        const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+        const res = await fetch("/api/application", {
             method:"POST",
             headers:{
                 "Content-Type": "application/json"

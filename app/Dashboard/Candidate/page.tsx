@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function CandidateDashboard() {
@@ -38,6 +39,9 @@ export default function CandidateDashboard() {
               Track your job applications and interviews.
             </p>
           </div>
+           <button className="bg-slate-900 hover:bg-cyan-900 px-5 py-3 rounded-xl font-semibold transition m-3">
+                <Link href="/Job">Browse Jobs</Link>
+            </button>
         </div>
 
         

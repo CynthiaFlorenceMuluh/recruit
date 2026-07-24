@@ -34,16 +34,16 @@ export default function Navbar() {
         <div id="navbar-menu" className={`w-full md:flex md:w-auto ${menuOpen ? "block" : "hidden"}`}>
           <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm md:flex-row md:items-center md:border-none md:p-0 md:shadow-none">
            
-            <Link href="/candidateSignup" className="transition hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
+            <Link href="/candidateSignup" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
               Candidate Signup
             </Link>
-            <Link href="/EmployerSignup" className="transition hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
+            <Link href="/EmployerSignup" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600  " onClick={() => setMenuOpen(false)}>
               Recruiter Signup
             </Link>
-            <Link href="/Post" className="transition hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
+            <Link href="/Post" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
               Post
             </Link>
-            <Link href="/Job" className="transition hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
+            <Link href="/Job" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
               Jobs
             </Link>
           </div>

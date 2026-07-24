@@ -48,8 +48,8 @@ export default function RecruiterDashboard() {
       
       <div className="grid grid-cols-1 items-center m-3 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-        <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
-          <h3 className="text-slate-400 text-sm">
+        <div className="bg-white p-6 rounded-2xl border border-slate-800">
+          <h3 className="text-slate-500 text-sm">
             Total Jobs
           </h3>
 
@@ -58,8 +58,8 @@ export default function RecruiterDashboard() {
           </p>
         </div>
 
-        <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
-          <h3 className="text-slate-400 text-sm">
+        <div className="bg-white p-6 rounded-2xl border border-slate-800">
+          <h3 className="text-slate-500 text-sm">
             Applicants
           </h3>
 
@@ -68,8 +68,8 @@ export default function RecruiterDashboard() {
           </p>
         </div>
 
-        <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
-          <h3 className="text-slate-400 text-sm">
+        <div className="bg-white p-6 rounded-2xl border border-slate-800">
+          <h3 className="text-slate-500 text-sm">
             Interviews
           </h3>
 
@@ -78,8 +78,8 @@ export default function RecruiterDashboard() {
           </p>
         </div>
 
-        <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
-          <h3 className="text-slate-400 text-sm">
+        <div className="bg-white p-6 rounded-2xl border border-slate-800">
+          <h3 className="text-slate-500 text-sm">
             Hired
           </h3>
 
@@ -91,9 +91,9 @@ export default function RecruiterDashboard() {
       </div>
 
     
-      <div className="mt-10 bg-slate-900 border border-slate-800 rounded-2xl p-6">
+      <div className="mt-10 bg-white border border-slate-800 rounded-2xl p-6">
 
-        <h2 className="text-xl font-semibold mb-6">
+        <h2 className="text-xl text-slate-500 font-semibold mb-6">
           Recent Jobs
         </h2>
 

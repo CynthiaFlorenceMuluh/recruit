@@ -16,8 +16,8 @@ model User {
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
   candidateProfile CandidateProfile?
-  recruiterProfile RecruiterProfile?
   jobs             Job[]
+  recruiterProfile RecruiterProfile?
 }
 
 model CandidateProfile {
@@ -114,19 +114,19 @@ model Job {
   title        String
   description  String
   location     String?
-  Type         String?
-  salary       String?
-  applyHere    String?
-  company      String?
   createdAt    DateTime         @default(now())
   isActive     Boolean          @default(true)
   updatedAt    DateTime         @updatedAt
+  userId       String
+  Type         String?
+  applyHere    String?
+  company      String?
+  salary       String?
   aiScores     AIMatchScore[]
   applications Application[]
   recruiter    RecruiterProfile @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
-  skills       JobSkill[]
-  userId       String
   user         User             @relation(fields: [userId], references: [id])
+  skills       JobSkill[]
 }
 
 model JobSkill {

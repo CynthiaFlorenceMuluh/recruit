@@ -64,11 +64,11 @@ export default function Job(){
           (jobs.map((job) => (
             <div key={job.id} className="job-card bg-white rounded-3xl  p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg" >
               <h3 className="mt-4 text-xl font-semibold text-slate-900">{job.title}</h3>
-              <p className="mt-4 text-xl font-semibold text-slate-900">{job.type}</p>
+   
+              <p className="mt-4 text-sm  text-slate-900">{job.description}</p>
               <p className="mt-2 text-slate-500">{job.company}</p>
-              <p className="mt-4 text-xl font-semibold text-slate-900">{job.description}</p>
               <p className="mt-4 text-sm text-slate-600">{job.location}</p>
-              <p className="mt-4 text-xl font-semibold text-slate-900">{job.salary}</p>
+              <p className="mt-4 text-xl font-bold text-cyan-600">{job.salary}</p>
               <p className="mt-4 text-xl font-semibold text-slate-900">{job.apply}</p>
               <button className="mt-6 inline-flex items-center rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800" type="button" 
               onClick={() => router.push(`/Apply/${job.id}`)}>
