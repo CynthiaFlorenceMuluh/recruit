@@ -1,0 +1,206 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String            @id @default(uuid())
+  fullName         String
+  email            String            @unique
+  password         String
+  role             Role
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  candidateProfile CandidateProfile?
+  jobs             Job[]
+  recruiterProfile RecruiterProfile?
+}
+
+model CandidateProfile {
+  id                String           @id @default(uuid())
+  userId            String           @unique
+  title             String?
+  bio               String?
+  phone             String?
+  location          String?
+  profileImage      String?
+  resumeUrl         String?
+  profileCompletion Int              @default(0)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  aiScores          AIMatchScore[]
+  applications      Application[]
+  user              User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skills            CandidateSkill[]
+  education         Education[]
+  experience        Experience[]
+  projects          Project[]
+}
+
+model Skill {
+  id         String           @id @default(uuid())
+  name       String           @unique
+  candidates CandidateSkill[]
+  jobs       JobSkill[]
+}
+
+model CandidateSkill {
+  candidateId String
+  skillId     String
+  candidate   CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  skill       Skill            @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@id([candidateId, skillId])
+}
+
+model Education {
+  id           String           @id @default(uuid())
+  candidateId  String
+  school       String
+  degree       String?
+  fieldOfStudy String?
+  startYear    Int?
+  endYear      Int?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  candidate    CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+}
+
+model Experience {
+  id          String           @id @default(uuid())
+  candidateId String
+  company     String
+  role        String
+  description String?
+  startDate   DateTime?
+  endDate     DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  candidate   CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id          String           @id @default(uuid())
+  candidateId String
+  title       String
+  description String?
+  techStack   String[]
+  githubUrl   String?
+  liveUrl     String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  candidate   CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+}
+
+model RecruiterProfile {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  companyName    String
+  position       String?
+  companyWebsite String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  jobs           Job[]
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Job {
+  id           String           @id @default(uuid())
+  recruiterId  String
+  title        String
+  description  String
+  location     String?
+  createdAt    DateTime         @default(now())
+  isActive     Boolean          @default(true)
+  updatedAt    DateTime         @updatedAt
+  userId       String
+  Type         String?
+  applyHere    String?
+  company      String?
+  salary       String?
+  aiScores     AIMatchScore[]
+  applications Application[]
+  recruiter    RecruiterProfile @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+  user         User             @relation(fields: [userId], references: [id])
+  skills       JobSkill[]
+}
+
+model JobSkill {
+  jobId   String
+  skillId String
+  job     Job    @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  skill   Skill  @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@id([jobId, skillId])
+}
+
+model Application {
+  id          String            @id @default(uuid())
+  jobId       String
+  candidateId String
+  coverLetter String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  status      ApplicationStatus @default(pending)
+  candidate   CandidateProfile  @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  job         Job               @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  interviews  Interview[]
+
+  @@unique([jobId, candidateId])
+}
+
+model AIMatchScore {
+  id          String           @id @default(uuid())
+  jobId       String
+  candidateId String
+  score       Int
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  candidate   CandidateProfile @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  job         Job              @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@unique([jobId, candidateId])
+}
+
+model Interview {
+  id            String          @id @default(uuid())
+  applicationId String
+  scheduledAt   DateTime
+  meetingLink   String?
+  createdAt     DateTime        @default(now())
+  notes         String?
+  updatedAt     DateTime        @updatedAt
+  status        InterviewStatus @default(scheduled)
+  application   Application     @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+}
+
+model playing_with_neon {
+  id    Int    @id @default(autoincrement())
+  name  String
+  value Float? @db.Real
+}
+
+enum Role {
+  candidate
+  recruiter
+  admin
+}
+
+enum ApplicationStatus {
+  pending
+  reviewed
+  shortlisted
+  rejected
+  hired
+}
+
+enum InterviewStatus {
+  scheduled
+  completed
+  cancelled
+  rescheduled
+}
