@@ -20,14 +20,14 @@ export async function GET() {
 
     const recruiter = await prisma.recruiterProfile.findUnique({
       where: {
-        userId: ""
+        userId: session.user.id
       }
     });
 
 
-    if (!employer) {
+    if (!recruiter) {
       return NextResponse.json(
-        { error: "Employer profile not found" },
+        { error: "Recruiter profile not found" },
         { status: 404 }
       );
     }
@@ -36,7 +36,7 @@ export async function GET() {
     const jobs = await prisma.job.findMany({
 
       where: {
-        recruiterId: employer.id
+        recruiterId: recruiter.id
       },
 
       orderBy: {
