@@ -21,9 +21,9 @@ export default function Apply(){
         if (status === "unauthenticated") {
             const wantsToLogin = confirm("You need an account to apply. Log in now?");
             if (wantsToLogin) {
-                router.push(`/Login?redirect=/Apply/${jobId}`);
+                router.push(`/login?redirect=/apply/${jobId}`);
             } else {
-                router.push("/Job");
+                router.push("/job");
             }
         }
     }, [status, jobId, router]);
@@ -47,7 +47,7 @@ export default function Apply(){
         const data = await res.json();
         console.log(data);
         if (res.ok) {
-            router.push("/Job");
+            router.push("/job");
         }
     }
 
