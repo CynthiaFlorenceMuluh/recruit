@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     }
 
 
-    // Check existing user
+   
     const existingUser = await prisma.user.findUnique({
       where: {
         email,
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
 
-    // Create employer user
+    
     const user = await prisma.user.create({
       data: {
         fullName,
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     });
 
 
-    // Create recruiter profile
+ 
     await prisma.recruiterProfile.create({
       data: {
         userId: user.id,

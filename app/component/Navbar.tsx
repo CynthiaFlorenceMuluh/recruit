@@ -37,13 +37,13 @@ export default function Navbar() {
             <Link href="/candidateSignup" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
               Candidate Signup
             </Link>
-            <Link href="/EmployerSignup" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600  " onClick={() => setMenuOpen(false)}>
+            <Link href="/employerSignup" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600  " onClick={() => setMenuOpen(false)}>
               Recruiter Signup
             </Link>
-            <Link href="/Post" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
+            <Link href="/post" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
               Post
             </Link>
-            <Link href="/Job" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
+            <Link href="/job" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
               Jobs
             </Link>
           </div>

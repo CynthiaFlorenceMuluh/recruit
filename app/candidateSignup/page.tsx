@@ -55,7 +55,7 @@ export default function CandidateSignupPage() {
       }
 
       alert("Registration successful! Redirecting to login...");
-      router.push("/Login/candidateLogin");
+      router.push("/login/candidateLogin");
     } catch (err) {
       setError("An error occurred. Please try again.");
       console.error(err);
@@ -159,7 +159,7 @@ export default function CandidateSignupPage() {
 
           <p className="text-center text-sm">
             Already have an account?{" "}
-            <Link href="/Login/candidateLogin" className="text-slate-900 font-semibold hover:text-cyan-400">
+            <Link href="/login/candidateLogin" className="text-slate-900 font-semibold hover:text-cyan-400">
               Login
             </Link>
           </p>
