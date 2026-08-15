@@ -27,7 +27,7 @@ export default function Footer(){
                                 </Link>
                             </li>
                             <li>
-                                <Link href='/EmployeeSignup' className="text-gray-300 hover:text-white">
+                                <Link href='/employerSignup' className="text-gray-300 hover:text-white">
                                     Recruiter Signup
                                 </Link>
                             </li>

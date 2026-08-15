@@ -66,7 +66,7 @@ export default function page(){
           }
 
           alert("Registration successful! Redirecting to login...");
-          router.push("/Login/employerlogin");
+          router.push("/login/employerlogin");
         } catch (err) {
           setError("An error occurred. Please try again.");
           console.error(err);
@@ -146,7 +146,7 @@ export default function page(){
           </button>
                
                
-                    <p className="py-10 text-center text-sm text-slate-500">Already have an account <Link href="/Login/employerlogin" className="font-semibold text-slate-900 hover:text-cyan-600">Login</Link></p>
+                    <p className="py-10 text-center text-sm text-slate-500">Already have an account <Link href="/login/employerlogin" className="font-semibold text-slate-900 hover:text-cyan-600">Login</Link></p>
              
             </form>
 

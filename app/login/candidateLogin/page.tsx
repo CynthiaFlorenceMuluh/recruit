@@ -38,7 +38,7 @@ export default function CandidateLoginPage() {
                 return;
             }
 
-            router.push("/Dashboard");
+            router.push("/dashboard");
         } catch (err) {
             setError("An error occurred. Please try again.");
             console.error(err);
@@ -91,8 +91,7 @@ export default function CandidateLoginPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="px-6 py-3 bg-slate-900 rounded-2xl text-white font-medium hover:bg-slate-800 disabled:opacity-50"
-                    >
+                        className="px-6 py-3 bg-slate-900 rounded-2xl text-white font-medium hover:bg-slate-800 disabled:opacity-50">
                         {loading ? "Logging in..." : "Login"}
                     </button>
 

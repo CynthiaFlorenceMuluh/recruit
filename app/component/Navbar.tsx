@@ -18,8 +18,7 @@ export default function Navbar() {
           className="inline-flex items-center rounded-lg border border-slate-200 p-2 text-slate-700 transition hover:bg-slate-100 md:hidden"
           aria-controls="navbar-menu"
           aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((prev) => !prev)}
-        >
+          onClick={() => setMenuOpen((prev) => !prev)}>
           <span className="sr-only">Open main menu</span>
           <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path

@@ -11,7 +11,7 @@ export default function HeroSearch() {
     e.preventDefault();
     const params = new URLSearchParams();
     if (query) params.set("title", query);
-    router.push(`/Job?${params.toString()}`);
+    router.push(`/job?${params.toString()}`);
   };
 
   return (
