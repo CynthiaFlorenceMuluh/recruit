@@ -1,7 +1,7 @@
 import Link  from  "next/link";
 export default function Footer(){
     return(
-         <footer className="w-full bg-slate-900/70 text-white mt-10">
+         <footer className="w-full bg-slate-900 text-white mt-10">
             <div className="max-w-6xl mx-auto px-6 py-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     
@@ -23,12 +23,12 @@ export default function Footer(){
                             </li>
                             <li>
                                 <Link href='/candidateSignup' className="text-gray-300 hover:text-white">
-                                    Candidate Signup
+                                    Candidate 
                                 </Link>
                             </li>
                             <li>
                                 <Link href='/employerSignup' className="text-gray-300 hover:text-white">
-                                    Recruiter Signup
+                                    Recruiter
                                 </Link>
                             </li>
                             <li>

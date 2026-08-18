@@ -34,10 +34,10 @@ export default function Navbar() {
           <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm md:flex-row md:items-center md:border-none md:p-0 md:shadow-none">
            
             <Link href="/candidateSignup" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
-              Candidate Signup
+              Candidate 
             </Link>
             <Link href="/employerSignup" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600  " onClick={() => setMenuOpen(false)}>
-              Recruiter Signup
+              Recruiter 
             </Link>
             <Link href="/post" className="transition p-3 bg-cyan-50 rounded-2xl hover:text-cyan-600" onClick={() => setMenuOpen(false)}>
               Post
