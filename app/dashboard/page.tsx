@@ -12,9 +12,9 @@ export default function DashboardRoot() {
     if (session?.user) {
       const role = (session.user as any).role;
       if (role === "recruiter") {
-        router.push("/Dashboard/Employer");
+        router.push("/dashboard/employer");
       } else if (role === "candidate") {
-        router.push("/Dashboard/Candidate");
+        router.push("/dashboard/candidate");
       }
     }
   }, [session, router]);

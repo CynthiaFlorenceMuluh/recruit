@@ -13,7 +13,7 @@ export default function CandidateDashboard() {
 
   const fetchDashboard = async () => {
     try {
-      const response = await fetch("/api/Dashboard");
+      const response = await fetch("/api/dashboard");
       const data = await response.json();
       setDashboard(data);
     } catch (error) {

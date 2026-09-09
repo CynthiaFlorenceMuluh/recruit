@@ -42,7 +42,7 @@ export default function Post(){
                     throw new Error(data.error || "Failed to post job");
                 }
                 alert("Job posted successfully!");
-                router.push("/Job");
+                router.push("/job");
             }
             catch(error:any){
                 setError(error.message);

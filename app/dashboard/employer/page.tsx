@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react"
 
 export default function RecruiterDashboard() {
+  const { data: session } = useSession();
   const [dashboard, setDashboard] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -13,7 +15,7 @@ export default function RecruiterDashboard() {
 
   const fetchDashboard = async () => {
     try {
-      const response = await fetch("/api/Dashboard");
+      const response = await fetch("/api/dashboard");
       const data = await response.json();
       setDashboard(data);
     } catch (error) {
@@ -32,7 +34,7 @@ export default function RecruiterDashboard() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-4xl  text-slate-900 font-bold ">
-            Welcome back, {dashboard?.user?.companyName}
+            Welcome back, {(session?.user as any)?.companyName ?? session?.user?.name}
           </h1>
 
           <p className="text-slate-900 mt-2">
@@ -41,7 +43,7 @@ export default function RecruiterDashboard() {
         </div>
 
         <button className="bg-slate-900 hover:bg-cyan-900 px-5 py-3 rounded-xl font-semibold transition m-3">
-          <Link href="/Post">+ Create Job</Link>
+          <Link href="/post">+ Create Job</Link>
         </button>
       </div>
 

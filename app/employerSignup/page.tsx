@@ -80,6 +80,11 @@ export default function page(){
         <div className=" bg-white rounded-2xl w-full max-w-md p-8 m-10 ">
             <h2 className="text-center text-3xl font-semibold  text-slate-900 ">Register </h2>
             <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+                 {error && (
+        <p className="text-red-600 text-sm text-center bg-red-50 border border-red-200 rounded-lg p-2">
+            {error}
+        </p>
+    )}
                 <div className="">
                     <label htmlFor="companyName" className="block text-sm font-semibold text-gray-700 mb-2">Company Name</label>
                     <input className="h-10 w-full border-2 border-slate-900 rounded-2xl p-5"
