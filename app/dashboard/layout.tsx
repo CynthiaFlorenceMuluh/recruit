@@ -24,7 +24,7 @@ export default function RecruiterLayout({
           <h1 className="text-2xl font-bold mb-10">RECruitiq</h1>
 
           <nav className="space-y-3">
-            <Link href="/dashboard/employer/dashboard" className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition">
+            <Link href="/dashboard/employer" className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition">
               <LayoutDashboard size={20} />
               Dashboard
             </Link>
@@ -32,7 +32,7 @@ export default function RecruiterLayout({
               <Briefcase size={20} />
               Jobs
             </Link>
-            <Link href="/dashboard/employer/applicants" className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition">
+            <Link href="/dashboard/employer/candidates" className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition">
               <Users size={20} />
               Applicants
             </Link>
@@ -48,12 +48,13 @@ export default function RecruiterLayout({
               <Settings size={20} />
               Settings
             </Link>
+            
           </nav>
         </div>
 
         <button
           onClick={() => signOut({ callbackUrl: "/" })}
-          className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition text-red-400"
+          className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 transition text-white"
         >
           <LogOut size={20} />
           Log out

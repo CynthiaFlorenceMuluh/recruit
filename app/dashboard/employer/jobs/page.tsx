@@ -1,165 +1,69 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function EmployerJobs() {
-
-  const router = useRouter();
-
+export default function EmployerJobsPage() {
   const [jobs, setJobs] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-
-    async function fetchJobs() {
-
-      const res = await fetch("/api/employer/jobs");
-
-      const data = await res.json();
-
-      setJobs(data);
-
-    }
-
-    fetchJobs();
-
-  }, []);
-
-
-  const handleDelete = async (jobId: string) => {
-
-    const confirmDelete = confirm(
-      "Are you sure you want to delete this job?"
-    );
-
-    if (!confirmDelete) return;
-
-
-    try {
-
-      const res = await fetch(`/api/jobs/${jobId}`, {
-        method: "DELETE",
-      });
-
-
-      if (!res.ok) {
-        throw new Error("Failed to delete job");
-      }
-
-
-      setJobs((prev) =>
-        prev.filter((job) => job.id !== jobId)
-      );
-
-
-      alert("Job deleted successfully");
-
-
-    } catch (error:any) {
-
-      alert(error.message);
-
-    }
-
+  const fetchJobs = () => {
+    fetch("/api/employer/jobs")
+      .then((res) => res.json())
+      .then((data) => setJobs(Array.isArray(data) ? data : []))
+      .catch((err) => console.error("Error fetching jobs:", err))
+      .finally(() => setLoading(false));
   };
 
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  if (loading) return <div className="p-8">Loading...</div>;
 
   return (
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold text-slate-900">Your Jobs</h1>
+        <Link
+          href="/post"
+          className="bg-slate-900 hover:bg-cyan-900 text-white px-5 py-3 rounded-xl font-semibold transition"
+        >
+          + Create Job
+        </Link>
+      </div>
 
-    <div className="bg-slate-900 min-h-screen p-10">
-
-      <h2 className="text-3xl text-white text-center font-bold p-10">
-        My Posted Jobs
-      </h2>
-
-
-      <div className="grid text-white gap-6 md:grid-cols-3">
-
-
-        {jobs.length === 0 ? (
-
-          <p>No Jobs Posted Yet</p>
-
-
-        ) : (
-
-
-          jobs.map((job) => (
-
+      {jobs.length === 0 ? (
+        <p className="text-slate-400">No jobs created yet.</p>
+      ) : (
+        <div className="space-y-4">
+          {jobs.map((job) => (
             <div
               key={job.id}
-              className="bg-white rounded-3xl p-6 shadow-sm"
+              className="bg-white border border-slate-200 rounded-2xl p-6 flex items-center justify-between"
             >
-
-              <h3 className="mt-4 text-xl font-semibold text-slate-900">
-                {job.title}
-              </h3>
-
-
-              <p className="mt-4 text-xl font-semibold text-slate-900">
-                {job.type}
-              </p>
-
-
-              <p className="mt-2 text-slate-500">
-                {job.company}
-              </p>
-
-
-              <p className="mt-4 text-slate-700">
-                {job.description}
-              </p>
-
-
-              <p className="mt-4 text-sm text-slate-600">
-                {job.location}
-              </p>
-
-
-              <p className="mt-4 text-xl font-semibold text-slate-900">
-                {job.salary}
-              </p>
-
-
-              <div className="flex gap-3 mt-6">
-
-
-                <button
-                  className="rounded-full bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"
-                  onClick={() =>
-                    router.push(
-                      `/dashboard/employer/jobs/${job.id}/edit`
-                    )
-                  }
-                >
+              <div>
+                <h3 className="font-semibold text-slate-900">{job.title}</h3>
+                <p className="text-slate-500 text-sm">{job.location}</p>
+              </div>
+              <div className="flex gap-3">
+                <Link href={`/EditJob/${job.id}`} className="bg-cyan-700 text-white px-4 py-2 rounded-lg">
                   Edit
-                </button>
-
-
-
+                </Link>
                 <button
-                  className="rounded-full bg-red-600 px-5 py-2 text-white hover:bg-red-700"
-                  onClick={() =>
-                    handleDelete(job.id)
-                  }
+                  onClick={async () => {
+                    await fetch(`/api/jobs/${job.id}`, { method: "DELETE" });
+                    fetchJobs();
+                  }}
+                  className="bg-red-600 text-white px-4 py-2 rounded-lg"
                 >
                   Delete
                 </button>
-
-
               </div>
-
-
             </div>
-
-          ))
-
-        )}
-
-
-      </div>
-
+          ))}
+        </div>
+      )}
     </div>
-
   );
 }

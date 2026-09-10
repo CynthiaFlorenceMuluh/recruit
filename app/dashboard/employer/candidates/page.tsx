@@ -1,40 +1,53 @@
-const candidates = [
-  {
-    id: 1,
-    name: "John Doe",
-    role: "Frontend Developer",
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    role: "Product Designer",
-  },
-];
+"use client";
 
-export default function CandidatesPage() {
+import { useEffect, useState } from "react";
+
+export default function ApplicantsPage() {
+  const [applications, setApplications] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/employer/applicants")
+      .then((res) => res.json())
+      .then((data) => setApplications(Array.isArray(data) ? data : []))
+      .catch((err) => console.error("Error fetching applicants:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div className="p-8">Loading...</div>;
+
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">
-        Candidates
-        </h1>
+      <h1 className="text-3xl font-bold text-slate-900 mb-6">Applicants</h1>
 
-      <div className="space-y-4">
-        {candidates.map((candidate) => (
-          <div
-            key={candidate.id}
-            className="bg-white p-5 rounded-2xl border"
-          >
-            <h2 className="text-xl font-semibold">
-              {candidate.name}
-            </h2>
+      {applications.length === 0 ? (
+        <p className="text-slate-400">No applicants yet.</p>
+      ) : (
+        <div className="space-y-4">
+          {applications.map((app) => (
+            <div
+              key={app.id}
+              className="bg-white border border-slate-200 rounded-2xl p-6 flex items-center justify-between"
+            >
+              <div>
+                <h3 className="font-semibold text-slate-900">
+                  {app.candidate?.user?.fullName ?? "Unknown Candidate"}
+                </h3>
+                <p className="text-slate-500 text-sm">{app.candidate?.user?.email}</p>
+                <p className="text-slate-500 text-sm mt-1">
+                  Applied for: <span className="font-medium">{app.job?.title}</span>
+                </p>
+              </div>
 
-            <p className="text-gray-500 mt-2">
-              Applied for {candidate.role}
-            </p>
-          </div>
-            
-        ))}
-     </div>
-</div>
+              <div className="flex items-center gap-3">
+                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 capitalize">
+                  {app.status}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
